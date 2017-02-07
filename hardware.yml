@@ -1,9 +1,9 @@
-- name: Raspberry Pi Zero
+- name: Raspberry Pi Zero with soldered on header
   img: camera
 - name: Blinkt (optional)
   img: breadboard
 - name: Micro USB power pack
-  img: jumper-male-to-female
+  img: usb-power-pack
 - name: Pi Camera or Pi NoIR Camera
   img: camera
 - name: Pi Zero compatible camera cable
