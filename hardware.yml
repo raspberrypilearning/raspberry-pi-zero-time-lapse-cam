@@ -1,0 +1,10 @@
+- name: Raspberry Pi Zero
+  img: camera
+- name: Blinkt (optional)
+  img: breadboard
+- name: Micro USB power pack
+  img: jumper-male-to-female
+- name: Pi Camera or Pi NoIR Camera
+  img: camera
+- name: Pi Zero compatible camera cable
+  img: camera
