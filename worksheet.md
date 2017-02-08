@@ -102,6 +102,8 @@ The Raspberry Pi Zero has a smaller camera port than a standard Raspberry Pi, so
 
 1. Press F5 to run your program, and check that it continuously takes pictures every 30 seconds. You should be able to find the pictures in the folder `/home/pi/timelapse`.
 
+1. You can see the final code [here](code/final_timelapse.py)
+
 ## Attaching a header to the Raspberry Pi Zero
 
 If you would like to include the optional lights on your wearable using the Blinkt, your Raspberry Pi Zero will need a male header for the Blinkt to attach to, which must be soldered on. (If you don't want to solder, you could try the [hammer header](https://shop.pimoroni.com/products/gpio-hammer-header) instead.) *The Raspberry Pi Zero must be completely unplugged and powered off before attempting any soldering.*
@@ -180,7 +182,7 @@ This part is optional - if you don't have a Blinkt or don't want to put lights o
 
 1. Add your own code for a light show. When writing the code for your light sequence, make sure that you do *not* include an infinite loop (`while True:`) within the function. If you do this, the flow of control within your program will get stuck within this loop and your camera will not take any more pictures. In the glasses example we used [this code](code/example_lights.py) to cause a red light to move across the screen and back twice.
 
-## Loading the script on boot
+## Starting the timelapse on boot
 
 Since we will be running the Raspberry Pi Zero as a wearable with a USB power supply (and not with a keyboard, mouse or monitor attached), we need a way of starting the Python script when the Raspberry Pi Zero powers on.
 
