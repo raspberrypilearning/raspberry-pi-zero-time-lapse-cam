@@ -124,13 +124,15 @@ The Raspberry Pi Zero has a smaller camera port than a standard Raspberry Pi, so
   - `'/home/pi/timelapse/img{timestamp:%H-%M-%S-%f}.jpg'` - the filename of the picture. Notice the interesting part - `{timestamp:%H-%M-%S-%f}` - this makes the file name of the picture contain the current time (including milliseconds), so that the pictures can be organised easily into a sequence, and so that it is extremely unlikely that two pictures would have the same file name.
   - `time.sleep(WAIT_TIME)` - Wait for the number of seconds you specified earlier
 
-1. Run your program and test whether it continuously takes pictures every 30 seconds. You can check for the pictures in the folder `/home/pi/timelapse`.
+1. Press F5 to run your program, and check that it continuously takes pictures every 30 seconds. You should be able to find the pictures in the folder `/home/pi/timelapse`.
 
 ## Coding the lights
 
 This part is optional - if you don't have a Blinkt or don't want to put lights on your timelapse camera, you can skip this section.
 
 1. If you have not done so already, attach the Blinkt to your Raspberry Pi Zero, ensuring that it is powered off first. The Blinkt *must* be attached with the curved edges matching the curved edges of the Raspberry Pi Zero to avoid permanently damaging it.
+
+  ![Attach the Blinkt](images/attach-blinkt.png)
 
 1. Once the Blinkt is attached and the Raspberry Pi Zero is switched on, you can add some code to your program to control the lights.
 
@@ -147,13 +149,14 @@ This part is optional - if you don't have a Blinkt or don't want to put lights o
     # Code will go here
   ```
 
-1. Inside this function you can put the code for your own light show. Here's an example:
+1. Inside this function you can put the code for your own light show. Here's a very simple example:
 
   ```python
-  set_brightness(0.1)
-  clear()
-  set_pixel(0, 255, 0, 0)
-  show()
+  def lights():
+    set_brightness(0.1)
+    clear()
+    set_pixel(0, 255, 0, 0)
+    show()
   ```
 
   This code does the following:
@@ -162,8 +165,31 @@ This part is optional - if you don't have a Blinkt or don't want to put lights o
   - `set_pixel(0, 255, 0, 0)` - Sets pixel 0 (the pixels are numbered 0-7 starting on the left) to red. The first number is which pixel to set, and the last three numbers are a colour in RGB format.
   - `show()` - Shows the pixels in the colours you just set.
 
+1. Add a line of code to call the function which shows the lights when a new picture is taken:
 
-## Creating the case
+  ```python
+  for filename in camera.capture_continuous('/home/pi/timelapse/img{timestamp:%H-%M-%S-%f}.jpg'):
+      lights()    # Add this line to call the light show
+      time.sleep(WAIT_TIME)
+  ```
+
+1. Add your own code for a light show. When writing the code for your light sequence, make sure that you do *not* include an infinite loop (`while True:`) within the function. If you do this, the flow of control within your program will get stuck within this loop and your camera will not take any more pictures. In the glasses example we used [this code](code/example_lights.py) to cause a red light to move across the screen and back twice.
+
+## Creating the wearable
+
+Now that your code works, it's time to work out how you will make your Raspberry Pi Zero wearable! Your limit here is your imagination - you can use anything ranging from designing a stylish case using a 3D printer to the opposite end of maker chic and using a cardboard box and gaffer tape. Here is how we made the glasses, to give you an example:
+
+1. Take a small box that will fit the Raspberry Pi Zero inside - this could be a match box, or we found this old headphone box:
+
+  ![Small box](images/small-box.png)
+
+1. Using a craft knife, carefully cut a hole in the box big enough for the lights to show through, if you are using them.
+
+  ![Cut hole for lights](images/cut-a-hole.png)
+
+1. Also cut holes in the box to access the ports on the Raspberry Pi Zero, and two holes on the back for the arm of the glasses. Insert the arm of the glasses through the hole to attach it to the box, being careful not to bend it too much. We also covered the box with black gaffer tape to make it look cool and futuristic.
+
+  ![Cut hole for glasses](images/glasses-through.png)
 
 ## Loading the script on boot
 
