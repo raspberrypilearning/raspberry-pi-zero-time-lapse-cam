@@ -55,11 +55,11 @@ The Raspberry Pi Zero has a smaller camera port than a standard Raspberry Pi, so
 
   ![Camera without cable](images/camera-no-cable.png)
 
-1. Insert the wider end of the Raspberry Pi Zero camera cable into the camera, with the exposed metal parts facing towards the front of the camera. Push down the clip to secure the cable in place.
+1. Insert the wider end of the Raspberry Pi Zero camera cable into the camera, with the exposed metal connectors facing towards the front of the camera. Push down the clip to secure the cable in place.
 
   ![Camera attached to Pi Zero cable](images/camera-attached.png)
 
-1. Pull up the camera clip on the Raspberry Pi Zero and insert the narrower end of the camera cable with the exposed metal parts facing the underside of the Pi Zero. Push down the clip to secure the cable.
+1. Pull up the camera clip on the Raspberry Pi Zero and insert the narrower end of the camera cable, with the exposed metal connectors facing the underside of the Pi Zero. Push down the clip to secure the cable.
 
   ![Pull up the clip](images/pull-up-clip.png)
 
@@ -71,16 +71,102 @@ The Raspberry Pi Zero has a smaller camera port than a standard Raspberry Pi, so
   raspistill -k
   ```
 
-  1. You should see a camera preview. Press the Enter key to take a picture and exit. If you do not see a camera preview and instead receive an error message, check that your camera is properly connected to the Raspberry Pi Zero. Also ensure that your camera is enabled by opening the Raspberry Pi configuration menu under "Preferences":
+1. You should see a camera preview. Press the Enter key to take a picture and exit. If you do not see a camera preview and instead receive an error message, check that your camera is properly connected to the Raspberry Pi Zero. Also ensure that your camera is enabled by opening the Raspberry Pi configuration menu under "Preferences":
 
-    ![Raspberry Pi config menu](images/raspi-config-menu.png)
+  ![Raspberry Pi config menu](images/raspi-config-menu.png)
 
-  1. Check that the camera is set to "Enabled". If it is not, change the setting to "Enabled", press OK and then reboot your Raspberry Pi Zero before trying the first step again.
+1. Check that the camera is set to "Enabled". If it is not, change the setting to "Enabled", press OK and then reboot your Raspberry Pi Zero before trying again to take a picture with the `raspistill -k` command.
 
-      ![Set camera to enabled](images/raspi-config.png)
+  ![Set camera to enabled](images/raspi-config.png)
 
 ## Coding the timelapse
 
+1. Once the camera is set up, we need to write some code to take regular pictures. Firstly open the file explorer and right click on a blank area. Select `Create new` and then click `Folder`
+
+  ![Create folder menu](images/create-folder.png)
+
+1. Type in the name of the folder where you will store the code and the photographs. We chose to call ours `timelapse`. Make a note of the path to this folder which is displayed in the bar at the top. Ours was `/home/pi/timelapse`
+
+  ![Timelapse folder](images/timelapse-folder.png)
+
+1. From the "Programming" menu, open up "Python 3"
+
+  ![Open Python 3](images/python3-app-menu.png)
+
+1. Create a new Python file by clicking on `File` > `New File`.
+
+1. Click on `File` > `Save` and save your file into the `timelapse` folder you just created, with the filename `timelapse.py`.
+
+1. Add the following code to set up your PiCamera. We have deliberately set the resolution of the camera at 1024 x 768 so that the images are captured at a lower resolution. This is in case you wish to make an animated gif of your timelapse photographs later, so the file size of the gif will not be too large. If you would prefer higher or lower resolution photographs, you can change this setting accordingly.
+
+  ```python
+  import time
+  import picamera
+
+  with picamera.PiCamera() as camera:
+      camera.resolution = (1024, 768)
+  ```
+
+1. We need the camera to capture an unspecified number of photographs as the program runs continuously. To do this, we will use the `capture_continuous` method from the picamera library. Add three lines to your code so that it looks as follows:
+
+    ```python
+    WAIT_TIME = 30
+
+    with picamera.PiCamera() as camera:
+        camera.resolution = (1024, 768)
+        for filename in camera.capture_continuous('/home/pi/timelapse/img{timestamp:%H-%M-%S-%f}.jpg'):
+            time.sleep(WAIT_TIME)
+  ```
+
+  Let's look at what these three lines do:
+  - `WAIT_TIME = 30` - sets how long we would like to wait between shots, in seconds
+  - `for filename in camera.capture_continuous(` - creates an "infinite iterator" or in other words, the code will keep taking photos forever until the program is stopped
+  - `'/home/pi/timelapse/img{timestamp:%H-%M-%S-%f}.jpg'` - the filename of the picture. Notice the interesting part - `{timestamp:%H-%M-%S-%f}` - this makes the file name of the picture contain the current time (including milliseconds), so that the pictures can be organised easily into a sequence, and so that it is extremely unlikely that two pictures would have the same file name.
+  - `time.sleep(WAIT_TIME)` - Wait for the number of seconds you specified earlier
+
+1. Run your program and test whether it continuously takes pictures every 30 seconds. You can check for the pictures in the folder `/home/pi/timelapse`.
+
 ## Coding the lights
 
-##
+This part is optional - if you don't have a Blinkt or don't want to put lights on your timelapse camera, you can skip this section.
+
+1. If you have not done so already, attach the Blinkt to your Raspberry Pi Zero, ensuring that it is powered off first. The Blinkt *must* be attached with the curved edges matching the curved edges of the Raspberry Pi Zero to avoid permanently damaging it.
+
+1. Once the Blinkt is attached and the Raspberry Pi Zero is switched on, you can add some code to your program to control the lights.
+
+1. Add a new line of code with the other `import` statements to import the functions we need from the blinkt library:
+
+  ```python
+  from blinkt import set_pixel, set_brightness, show, clear
+  ```
+
+1. Immediately after this line `import` statements, create a function:
+
+  ```python
+  def lights():
+    # Code will go here
+  ```
+
+1. Inside this function you can put the code for your own light show. Here's an example:
+
+  ```python
+  set_brightness(0.1)
+  clear()
+  set_pixel(0, 255, 0, 0)
+  show()
+  ```
+
+  This code does the following:
+  - `set_brightness(0.1)` - the lights are pretty bright, so we turned them down a bit
+  - `clear()` - clears any lights which may be on
+  - `set_pixel(0, 255, 0, 0)` - Sets pixel 0 (the pixels are numbered 0-7 starting on the left) to red. The first number is which pixel to set, and the last three numbers are a colour in RGB format.
+  - `show()` - Shows the pixels in the colours you just set.
+
+
+## Creating the case
+
+## Loading the script on boot
+
+## What's next?
+
+- Perhaps you could create a gif out of your timelapse https://github.com/raspberrypilearning/timelapse-setup/blob/master/worksheet.md
