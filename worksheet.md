@@ -226,10 +226,6 @@ Now that your code works, it's time to work out how you will make your Raspberry
 
 1. Attach your USB power pack through the hole you cut in the bottom of the box and turn it on to boot up the pi and start your timelapse wearable.
 
-1. Ta-da!
-
-  ![Finished product](images/finished-product.png)
-
 ## What's next?
 
 - You can see the pictures your timelapse wearable took by attaching your monitor, keyboard and mouse to the Raspberry Pi Zero and navigating to the folder `/home/pi/timelapse`
