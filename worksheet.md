@@ -142,7 +142,7 @@ This part is optional - if you don't have a Blinkt or don't want to put lights o
   from blinkt import set_pixel, set_brightness, show, clear
   ```
 
-1. Immediately after this line `import` statements, create a function:
+1. Immediately after this line, create a function:
 
   ```python
   def lights():
@@ -175,9 +175,31 @@ This part is optional - if you don't have a Blinkt or don't want to put lights o
 
 1. Add your own code for a light show. When writing the code for your light sequence, make sure that you do *not* include an infinite loop (`while True:`) within the function. If you do this, the flow of control within your program will get stuck within this loop and your camera will not take any more pictures. In the glasses example we used [this code](code/example_lights.py) to cause a red light to move across the screen and back twice.
 
+## Loading the script on boot
+
+Since we will be running the Raspberry Pi Zero as a wearable with a USB power supply (and not with a keyboard, mouse or monitor attached), we need a way of starting the Python script when the Raspberry Pi Zero powers on.
+
+1. Open up a terminal window
+
+1. At the terminal, type the following command:
+
+  ```bash
+  sudo nano ~/.config/lxsession/LXDE-pi/autostart
+  ```
+
+1. A file will open up, add this line at the bottom of the file to automatically start your timelapse file using Python 3:
+
+  ```bash
+  sudo /usr/bin/python3 /home/pi/timelapse/timelapse.py
+  ```
+
+1. Press `Ctrl+X` to exit and `y` to save the changes.
+
+1. Now when you reboot your Raspberry Pi, the script should run. You can test this by rebooting and then looking inside the folder `/home/pi/timelapse` to see the photographs appearing. Note that when you reboot, you will not see any window showing that your script is running as Python will be running in the background.
+
 ## Creating the wearable
 
-Now that your code works, it's time to work out how you will make your Raspberry Pi Zero wearable! Your limit here is your imagination - you can use anything ranging from designing a stylish case using a 3D printer to the opposite end of maker chic and using a cardboard box and gaffer tape. Here is how we made the glasses, to give you an example:
+Now that your code works, it's time to work out how you will make your Raspberry Pi Zero wearable! You could make anything ranging from designing a stylish case using a 3D printer to the opposite end of maker chic - a cardboard box and gaffer tape. Here is how we made the glasses, to give you an example:
 
 1. Take a small box that will fit the Raspberry Pi Zero inside - this could be a match box, or we found this old headphone box:
 
@@ -191,8 +213,14 @@ Now that your code works, it's time to work out how you will make your Raspberry
 
   ![Cut hole for glasses](images/glasses-through.png)
 
-## Loading the script on boot
+1. Put the Raspberry Pi Zero inside the box and close the ends. You can feed the camera cable through the closed flap and secure it onto the front of the box using more gaffer tape.
+
+  ![Camera on front](images/timelapse-specs.png)
+
+1. Attach your USB power pack through the hole you cut in the bottom of the box and turn it on to boot up the pi and start your timelapse wearable.
 
 ## What's next?
 
-- Perhaps you could create a gif out of your timelapse https://github.com/raspberrypilearning/timelapse-setup/blob/master/worksheet.md
+- You can see the pictures your timelapse wearable took by attaching your monitor, keyboard and mouse to the Raspberry Pi Zero and navigating to the folder `/home/pi/timelapse`
+- Perhaps you could create a [gif out of your timelapse pictures](https://www.raspberrypi.org/learning/timelapse-setup/)?
+- Instead of lights, could you incorporate a sensor into your project to intead take a photograph only when the sensor is triggered?
