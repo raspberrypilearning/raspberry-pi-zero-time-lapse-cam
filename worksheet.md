@@ -220,15 +220,19 @@ Now that your code works, it's time to work out how you will make your Raspberry
 
   ![Cut hole for glasses](images/glasses-through.png)
 
-1. Put the Raspberry Pi Zero inside the box and close the ends. You can feed the camera cable through the closed flap and secure it onto the front of the box using more gaffer tape.
+1. Put the Raspberry Pi Zero inside the box and close the ends. You can feed the camera cable through the closed flap and secure it onto the front of the box using more gaffer tape. Be careful to get the camera the right way up!
 
   ![Camera on front](images/timelapse-specs.png)
 
 1. Attach your USB power pack through the hole you cut in the bottom of the box and turn it on to boot up the pi and start your timelapse wearable.
 
+1. Ta-da!
+
+  ![Finished product](images/finished-product.png)
+
 ## What's next?
 
 - You can see the pictures your timelapse wearable took by attaching your monitor, keyboard and mouse to the Raspberry Pi Zero and navigating to the folder `/home/pi/timelapse`
 - Perhaps you could create a [gif out of your timelapse pictures](https://www.raspberrypi.org/learning/timelapse-setup/)?
-- Instead of lights, could you incorporate a sensor into your project to intead take a photograph only when the sensor is triggered?
+- Instead of lights, could you incorporate a sensor into your project to instead take a photograph only when the sensor is triggered?
 - Could you design and 3D print a case for your wearable - perhaps something like [this one by Adafruit](https://www.raspberrypi.org/blog/wearable-pi-zero-camera/)?
