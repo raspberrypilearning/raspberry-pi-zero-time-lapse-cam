@@ -10,40 +10,12 @@ First, you need to decide what kind of wearable you would like to make. The Rasp
 
   ![Lanyard timelapse cam](images/james-timelapse.png)
 
-1. You could attach your timelapse camera to a pair of sunglasses so that it can literally see what you see.
+1. You could attach your timelapse camera to a pair of sunglasses so that it can literally see what you see. This make uses an additional piece of hardware called a [Blinkt](https://shop.pimoroni.com/products/blinkt) which allows the addition of a cool light pattern whenever a picture is captured. Adding these lights is completely optional - you could skip this part altogether or you could add lights in a different way, for example by using individual LEDs.
 
   ![Timelapse cam as glasses](images/timelapse-specs.png)
 
 1. Or, you may have your own idea for how you would like to wear your timelapse camera! The most important thing to remember is that your wearable timelapse camera will *not* be waterproof, so don't wear it outside in the rain (or in the shower).
 
-## Attaching a header to the Raspberry Pi Zero
-
-If you would like to include the optional lights on your wearable using the Blinkt, your Raspberry Pi Zero will need a male header for the Blinkt to attach to, which must be soldered on. (If you don't want to solder, you could try the [hammer header](https://shop.pimoroni.com/products/gpio-hammer-header) instead.)
-
-1. If your header is longer than the number of pins needed, carefully break it off to the right length. Insert the header into the holes in the Raspberry Pi Zero with the longer pins facing upwards.
-
-  ![Pi zero front](images/pi-zero-front.png)
-
-1. Keeping the header pressed in, turn both the Raspberry Pi Zero and the header over. To make soldering easier, put a blob of blue tack under the Raspberry Pi Zero on the long edge opposite the header to keep it level and stop it from moving around whilst you solder. Make sure the Raspberry Pi Zero is flush with the header before beginning to solder.
-
-1. Using a soldering iron, carefully solder each of the pins on the header to the Raspberry Pi Zero, making sure there is enough solder to create a good connection for each one.
-
-  ![Pi zero back](images/pi-zero-back.png)
-
-## Setting up the software
-
-If you are using the optional Blinkt, you will need to install the library code on your Raspberry Pi Zero, which requires an internet connection.
-
-You can either:
-
-- Connect the Raspberry Pi Zero to the internet using a USB to Ethernet dongle
-- If you have a Raspberry Pi with an internet connection you could put your SD card into that to install the libraries, then transfer it back to the Raspberry Pi Zero.
-
-Once you are connected to the internet, run the following command in the terminal:
-
-```bash
-sudo apt-get install python3-blinkt
-```
 
 ## Attaching the camera
 
@@ -81,11 +53,15 @@ The Raspberry Pi Zero has a smaller camera port than a standard Raspberry Pi, so
 
 ## Coding the timelapse
 
-1. Once the camera is set up, we need to write some code to take regular pictures. Firstly open the file explorer and right click on a blank area. Select `Create new` and then click `Folder`
+1. Once the camera is set up, we need to write some code to take regular pictures. Firstly open the file explorer and right click on a blank space inside the window.
+
+  ![File Explorer](images/file-explorer.png)
+
+1. Select `Create new` and then click `Folder`
 
   ![Create folder menu](images/create-folder.png)
 
-1. Type in the name of the folder where you will store the code and the photographs. We chose to call ours `timelapse`. Make a note of the path to this folder which is displayed in the bar at the top. Ours was `/home/pi/timelapse`
+1. Type in the name of the folder where you will store the code and the photographs. We chose to call ours `timelapse`. Make a note of the path to this folder which is displayed in the bar at the top, which should be `/home/pi/timelapse`
 
   ![Timelapse folder](images/timelapse-folder.png)
 
@@ -107,7 +83,7 @@ The Raspberry Pi Zero has a smaller camera port than a standard Raspberry Pi, so
       camera.resolution = (1024, 768)
   ```
 
-1. We need the camera to capture an unspecified number of photographs as the program runs continuously. To do this, we will use the `capture_continuous` method from the picamera library. Add three lines to your code so that it looks as follows:
+1. We need the camera to continuously capture photographs at a set time interval. To do this, we will use the `capture_continuous` method from the picamera library. Add three lines to your code so that it looks as follows:
 
     ```python
     WAIT_TIME = 30
@@ -125,6 +101,35 @@ The Raspberry Pi Zero has a smaller camera port than a standard Raspberry Pi, so
   - `time.sleep(WAIT_TIME)` - Wait for the number of seconds you specified earlier
 
 1. Press F5 to run your program, and check that it continuously takes pictures every 30 seconds. You should be able to find the pictures in the folder `/home/pi/timelapse`.
+
+## Attaching a header to the Raspberry Pi Zero
+
+If you would like to include the optional lights on your wearable using the Blinkt, your Raspberry Pi Zero will need a male header for the Blinkt to attach to, which must be soldered on. (If you don't want to solder, you could try the [hammer header](https://shop.pimoroni.com/products/gpio-hammer-header) instead.) *The Raspberry Pi Zero must be completely unplugged and powered off before attempting any soldering.*
+
+1. If your header is longer than the number of pins needed, carefully break it off to the right length. Insert the header into the holes in the Raspberry Pi Zero with the longer pins facing upwards.
+
+  ![Pi zero front](images/pi-zero-front.png)
+
+1. Keeping the header pressed in, turn both the Raspberry Pi Zero and the header over. To make soldering easier, put a blob of blue tack under the Raspberry Pi Zero on the long edge opposite the header to keep it level and stop it from moving around whilst you solder. Make sure the Raspberry Pi Zero is flush with the header before beginning to solder.
+
+1. Using a soldering iron, carefully solder each of the pins on the header to the Raspberry Pi Zero, making sure there is enough solder to create a good connection for each one.
+
+  ![Pi zero back](images/pi-zero-back.png)
+
+## Setting up the software
+
+If you are using the optional Blinkt, you will need to install the library code on your Raspberry Pi Zero, and to do this requires an internet connection.
+
+You can either:
+
+- Connect the Raspberry Pi Zero to the internet using a USB to Ethernet dongle
+- If you have a Raspberry Pi with an internet connection you could put your SD card into that to install the libraries, then transfer it back to the Raspberry Pi Zero.
+
+Once you are connected to the internet, run the following command in the terminal:
+
+```bash
+sudo apt-get install python3-blinkt
+```
 
 ## Coding the lights
 
