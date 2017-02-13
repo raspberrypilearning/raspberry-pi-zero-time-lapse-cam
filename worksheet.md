@@ -27,7 +27,7 @@ The Zero has a smaller camera port than a standard Raspberry Pi, so you will nee
 
   ![Camera without cable](images/camera-no-cable.png)
 
-1. Insert the wider end of the Zero camera cable into the camera, with the exposed metal connectors facing towards the front of the camera. Push down the clip to secure the cable in place.
+1. Insert the wider end of the Zero camera cable between the clip and the camera, with the exposed metal connectors facing towards the front of the camera. Push down the clip to clamp the cable in place.
 
   ![Camera attached to Pi Zero cable](images/camera-attached.png)
 
@@ -43,17 +43,17 @@ The Zero has a smaller camera port than a standard Raspberry Pi, so you will nee
   raspistill -k
   ```
 
-1. You should see a camera preview. Press the Enter key to take a picture and exit. If you do not see a camera preview and instead receive an error message, check that your camera is properly connected to the Zero. Also ensure that your camera is enabled by opening the Raspberry Pi configuration menu under "Preferences":
+1. You should see a camera preview. If you do not see a camera preview and instead receive an error message, check that your camera is properly connected to the Zero. Also ensure that your camera is enabled by opening the Raspberry Pi configuration menu under "Preferences":
 
   ![Raspberry Pi config menu](images/raspi-config-menu.png)
 
-1. Check that the camera is set to "Enabled". If it is not, change the setting to "Enabled", press OK and then reboot your Zero before trying again to take a picture with the `raspistill -k` command.
+  Check that the camera is set to "Enabled". If it is not, change the setting to "Enabled", press OK and then reboot your Zero before trying the `raspistill -k` command to check you can see a camera preview.
 
   ![Set camera to enabled](images/raspi-config.png)
 
 ## Coding the timelapse
 
-1. Once the camera is set up, we need to write some code to take regular pictures. Firstly open the file explorer and right click on a blank space inside the window.
+1. Once the camera is set up, we need to write some code to take regular pictures. Open the file explorer, then right click on a blank space inside the file explorer window.
 
   ![File Explorer](images/file-explorer.png)
 
@@ -230,5 +230,5 @@ Now that your code works, it's time to work out how you will make your Zero wear
 
 - You can see the pictures your timelapse wearable took by attaching your monitor, keyboard and mouse to the Zero and navigating to the folder `/home/pi/timelapse`
 - Perhaps you could create a [gif out of your timelapse pictures](https://www.raspberrypi.org/learning/timelapse-setup/)?
-- Instead of lights, could you incorporate a sensor into your project to instead take a photograph only when the sensor is triggered?
+- Instead of lights, could you incorporate a sensor or a button into your project to instead take a photograph only when the sensor is triggered?
 - Could you design and 3D print a case for your wearable - perhaps something like [this one by Adafruit](https://www.raspberrypi.org/blog/wearable-pi-zero-camera/)?
