@@ -232,7 +232,7 @@ Now that your code works, it's time to work out how you will make your Zero wear
 
 ## What's next?
 
-- You can see the pictures your timelapse wearable took by attaching your monitor, keyboard and mouse to the Zero and navigating to the folder `/home/pi/timelapse`
+- You can see the pictures your timelapse wearable took by attaching your monitor, keyboard and mouse to the Zero and navigating to the folder `/home/pi/timelapse`. Don't forget that your timelapse will still be taking pictures, as it loads when the Zero boots up.
 - Perhaps you could create a [gif out of your timelapse pictures](https://www.raspberrypi.org/learning/timelapse-setup/)?
 - Instead of lights, could you incorporate a sensor or a button into your project to instead take a photograph only when the sensor is triggered?
 - Could you design and 3D print a case for your wearable - perhaps something like [this one by Adafruit](https://www.raspberrypi.org/blog/wearable-pi-zero-camera/)?
