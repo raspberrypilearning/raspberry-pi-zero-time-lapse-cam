@@ -43,7 +43,7 @@ The Zero has a smaller camera port than a standard Raspberry Pi, so you will nee
   raspistill -k
   ```
 
-1. You should see a camera preview. If you do not see a camera preview and instead receive an error message, check that your camera is properly connected to the Zero. Also ensure that your camera is enabled by opening the Raspberry Pi configuration menu under "Preferences":
+1. You should see a camera preview (press Ctrl+C to exit). If you do not see a camera preview and instead receive an error message, check that your camera is properly connected to the Zero. Also ensure that your camera is enabled by opening the Raspberry Pi configuration menu under "Preferences":
 
   ![Raspberry Pi config menu](images/raspi-config-menu.png)
 
@@ -76,7 +76,7 @@ The Zero has a smaller camera port than a standard Raspberry Pi, so you will nee
 1. Add the following code to set up your PiCamera. We have deliberately set the resolution of the camera at 1024 x 768 so that the images are captured at a lower resolution. This is in case you wish to make an animated gif of your timelapse photographs later, so the file size of the gif will not be too large. If you would prefer higher or lower resolution photographs, you can change this setting accordingly.
 
   ```python
-  import time
+  from time import sleep
   import picamera
 
   with picamera.PiCamera() as camera:
@@ -91,14 +91,14 @@ The Zero has a smaller camera port than a standard Raspberry Pi, so you will nee
     with picamera.PiCamera() as camera:
         camera.resolution = (1024, 768)
         for filename in camera.capture_continuous('/home/pi/timelapse/img{timestamp:%H-%M-%S-%f}.jpg'):
-            time.sleep(WAIT_TIME)
+            sleep(WAIT_TIME)
   ```
 
   Let's look at what these three lines do:
   - `WAIT_TIME = 30` - sets how long we would like to wait between shots, in seconds
   - `for filename in camera.capture_continuous(` - creates an "infinite iterator" or in other words, the code will keep taking photos forever until the program is stopped
   - `'/home/pi/timelapse/img{timestamp:%H-%M-%S-%f}.jpg'` - the filename of the picture. Notice the interesting part - `{timestamp:%H-%M-%S-%f}` - this makes the file name of the picture contain the current time (including milliseconds), so that the pictures can be organised easily into a sequence, and so that it is extremely unlikely that two pictures would have the same file name.
-  - `time.sleep(WAIT_TIME)` - Wait for the number of seconds you specified earlier
+  - `sleep(WAIT_TIME)` - wait for the number of seconds you specified earlier
 
 1. Press F5 to run your program, and check that it continuously takes pictures every 30 seconds. You should be able to find the pictures in the folder `/home/pi/timelapse`.
 
@@ -164,13 +164,17 @@ This part is optional - if you don't have a Blinkt or don't want to put lights o
     clear()
     set_pixel(0, 255, 0, 0)
     show()
+    sleep(2)
+    set_pixel(0, 0, 0, 0)
+    show()
   ```
 
   This code does the following:
   - `set_brightness(0.1)` - the lights are pretty bright, so we turned them down a bit
   - `clear()` - clears any lights which may be on
-  - `set_pixel(0, 255, 0, 0)` - Sets pixel 0 (the pixels are numbered 0-7 starting on the left) to red. The first number is which pixel to set, and the last three numbers are a colour in RGB format.
-  - `show()` - Shows the pixels in the colours you just set.
+  - `set_pixel(0, 255, 0, 0)` - sets pixel 0 (the pixels are numbered 0-7 starting on the left) to red. The first number is which pixel to set, and the last three numbers are a colour in RGB format.
+  - `show()` - shows the pixels in the colours you just set.
+  - `sleep(2)` - wait 2 seconds
 
 1. Add a line of code to call the function which shows the lights when a new picture is taken:
 
