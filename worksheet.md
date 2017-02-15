@@ -1,10 +1,10 @@
-# Raspberry Pi Zero Timelapse Camera
+# Raspberry Pi Zero Time-lapse Camera
 
 In this resource you will make a wearable time-lapse camera using a Raspberry Pi Zero.
 
 ## Deciding on your wearable
 
-First, you need to decide what kind of wearable you would like to make. The Zero is very small and portable so you can wear it in various ways. Here are two examples of wearable time-lapse cameras that you could make with a Raspberry Pi Zero:
+First, you need to decide what kind of wearable you would like to make. The Pi Zero is very small and portable so you can wear it in various ways. Here are two examples of wearable time-lapse cameras that you could make with a Raspberry Pi Zero:
 
 1. You could use a lanyard to make a wearable camera that hangs round your neck. Your USB power pack could be stored in a shirt pocket close to the camera. Here is a basic wearable camera setup with a soldered-on LED to alert you when a photograph is being taken, and a button which could be programmed to start and stop photo capture sequences.
 
@@ -51,7 +51,7 @@ The Pi Zero has a smaller camera port than a standard Raspberry Pi, so you will 
 
   ![Set camera to enabled](images/raspi-config.png)
 
-## Coding the timelapse
+## Coding the time-lapse
 
 1. Once the camera is set up, we need to write some code to take regular pictures. Open the file explorer, then right click on a blank space inside the file explorer window.
 
@@ -106,13 +106,13 @@ The Pi Zero has a smaller camera port than a standard Raspberry Pi, so you will 
 
 ## Attaching a header to the Raspberry Pi Zero
 
-If you would like to include the optional lights on your wearable using the Blinkt, your Zero will need a male header for the Blinkt to attach to, which must be soldered on. (If you don't want to solder, you could try the [hammer header](https://shop.pimoroni.com/products/gpio-hammer-header) instead.) *The Zero must be completely unplugged and powered off before attempting any soldering.*
+If you would like to include the optional lights on your wearable using the Blinkt, your Pi Zero will need a male header for the Blinkt to attach to, which must be soldered on. (If you don't want to solder, you could try the [hammer header](https://shop.pimoroni.com/products/gpio-hammer-header) instead.) *The Pi Zero must be completely unplugged and powered off before you attempt any soldering.*
 
-1. If your header is longer than the number of pins needed, carefully break it off to the right length. Insert the header into the holes in the Zero with the longer pins facing upwards.
+1. If your header is longer than the number of pins needed, carefully break it off to the right length. Insert the header into the holes in the Pi Zero with the longer pins facing upwards.
 
   ![Pi zero front](images/pi-zero-front.png)
 
-1. Keeping the header pressed in, turn both the Zero and the header over. To make soldering easier, put a blob of blue tack under the Zero on the long edge opposite the header to keep it level and stop it from moving around whilst you solder. Make sure the Zero is flush with the header before beginning to solder.
+1. Keeping the header pressed in, turn both the Pi Zero and the header over. To make soldering easier, put a blob of blue tack under the Pi Zero on the long edge opposite the header to keep it level and stop it from moving around while you solder. Make sure the Pi Zero is flush with the header before beginning to solder.
 
 1. Using a soldering iron, carefully solder each of the pins on the header to the Zero, making sure there is enough solder to create a good connection for each one.
 
@@ -120,12 +120,12 @@ If you would like to include the optional lights on your wearable using the Blin
 
 ## Setting up the software
 
-If you are using the optional Blinkt, you will need to install the library code on your Zero, and to do this requires an internet connection.
+If you are using the optional Blinkt, you will need to install the library code on your Pi Zero. To do this, you will need an internet connection.
 
 You can either:
 
-- Connect the Zero to the internet using a USB to Ethernet dongle
-- If you have a Raspberry Pi with an internet connection you could put your SD card into that to install the libraries, then transfer it back to the Raspberry Pi Zero.
+- Connect the Pi Zero to the internet using a USB-to-Ethernet dongle
+- If you have a Raspberry Pi with an internet connection, you could transfer your SD card into the Raspberry Pi to install the libraries, then transfer it back to the Pi Zero.
 
 Once you are connected to the internet, run the following command in the terminal:
 
@@ -137,11 +137,11 @@ sudo apt-get install python3-blinkt
 
 This part is optional - if you don't have a Blinkt or don't want to put lights on your timelapse camera, you can skip this section.
 
-1. If you have not done so already, attach the Blinkt to your Zero, ensuring that it is powered off first. The Blinkt *must* be attached with the curved edges matching the curved edges of the Zero to avoid permanently damaging it.
+1. If you have not done so already, attach the Blinkt to your Pi Zero, ensuring that it is powered off first. The Blinkt must be attached with the curved edges matching the curved edges of the Pi Zero to avoid permanently damaging it.
 
   ![Attach the Blinkt](images/attach-blinkt.png)
 
-1. Once the Blinkt is attached and the Zero is switched on, you can add some code to your program to control the lights.
+1. Once the Blinkt is attached and the Pi Zero is switched on, you can add some code to your program to control the lights.
 
 1. Add a new line of code with the other `import` statements to import the functions we need from the blinkt library:
 
@@ -184,11 +184,11 @@ This part is optional - if you don't have a Blinkt or don't want to put lights o
       time.sleep(WAIT_TIME)
   ```
 
-1. Add your own code for a light show. When writing the code for your light sequence, make sure that you do *not* include an infinite loop (`while True:`) within the function. If you do this, the flow of control within your program will get stuck within this loop and your camera will not take any more pictures. In the glasses example we used [this code](code/example_lights.py) to cause a red light to move across the screen and back twice.
+1. Add your own code for a light show. When writing the code for your light sequence, make sure that you do not include an infinite loop (`while True:`) within the function. If you do this, the flow of control within your program will get stuck within this loop and your camera will not take any more pictures. In the glasses example, we used [this code](code/example_lights.py) to cause a red light to move across the screen and back twice.
 
-## Starting the timelapse on boot
+## Starting the time-lapse on boot
 
-Since we will be running the Zero as a wearable with a USB power supply (and not with a keyboard, mouse or monitor attached), we need a way of starting the Python script when the Zero powers on.
+We will be running the Pi Zero as a wearable with a USB power supply (and not with a keyboard, mouse or monitor attached), so we need a way of starting the Python script when the Zero powers on.
 
 1. Open up a terminal window
 
@@ -198,7 +198,7 @@ Since we will be running the Zero as a wearable with a USB power supply (and not
   sudo nano ~/.config/lxsession/LXDE-pi/autostart
   ```
 
-1. A file will open up, add this line at the bottom of the file to automatically start your timelapse file using Python 3:
+1. A file will open up, add this line at the bottom of the file to automatically start your time-lapse file using Python 3:
 
   ```bash
   sudo /usr/bin/python3 /home/pi/timelapse/timelapse.py
@@ -206,33 +206,33 @@ Since we will be running the Zero as a wearable with a USB power supply (and not
 
 1. Press `Ctrl+X` to exit and `y` to save the changes.
 
-1. Now when you reboot your Raspberry Pi, the script should run. You can test this by rebooting and then looking inside the folder `/home/pi/timelapse` to see the photographs appearing. Note that when you reboot, you will not see any window showing that your script is running as Python will be running in the background.
+1. When you reboot your Raspberry Pi, the script should run. You can test this by rebooting and then looking inside the folder `/home/pi/timelapse` to see the photographs appearing. Note that when you reboot, Python will be running in the background. You will not see any window showing that your script is running.
 
 ## Creating the wearable
 
-Now that your code works, it's time to work out how you will make your Zero wearable! You could make anything ranging from designing a stylish case using a 3D printer to the opposite end of maker chic - a cardboard box and gaffer tape. Here is how we made the glasses, to give you an example:
+Now that your code works, it's time to work out how you will make your Pi Zero wearable. You could make anything! Design a stylish case using a 3D printer or, at the opposite end of maker chic, build box using cardboard and gaffer tape. Here is how we made the glasses, to give you an example:
 
-1. Take a small box that will fit the Zero inside - this could be a match box, or we found this old headphone box:
+1. Take a small box that the Pi Zero will fit inside. This could be a match box, or we found this old headphone box:
 
   ![Small box](images/small-box.png)
 
-1. Using a craft knife, carefully cut a hole in the box big enough for the lights to show through, if you are using them.
+1. If you are using lights, use a craft knife to carefully cut a hole in the box big enough for the lights to show through.
 
   ![Cut hole for lights](images/cut-a-hole.png)
 
-1. Also cut holes in the box to access the ports on the Zero, and two holes on the back for the arm of the glasses. Insert the arm of the glasses through the hole to attach it to the box, being careful not to bend it too much. We also covered the box with black gaffer tape to make it look cool and futuristic.
+1. Cut holes in the bottom of the box to allow access to the ports on the Pi Zero. Cut two holes in the back for the arm of the glasses. Insert the arm of the glasses through the holes to attach it to the box, being careful not to bend it too much. We covered the box with black gaffer tape to make it look cool and futuristic.
 
   ![Cut hole for glasses](images/glasses-through.png)
 
-1. Put the Zero inside the box and close the ends. You can feed the camera cable through the closed flap and secure it onto the front of the box using more gaffer tape. Be careful to get the camera the right way up!
+1. Put the Pi Zero inside the box and close the ends. You can feed the camera cable through the closed flap and secure it onto the front of the box using more gaffer tape. Make sure that the camera is the right way up!
 
   ![Camera on front](images/timelapse-specs.png)
 
-1. Attach your USB power pack through the hole you cut in the bottom of the box and turn it on to boot up the pi and start your timelapse wearable.
+1. Attach the USB power pack through the hole you cut in the bottom of the box. Turn it on to boot up the Pi Zero and start your time-lapse wearable.
 
 ## What's next?
 
-- You can see the pictures your timelapse wearable took by attaching your monitor, keyboard and mouse to the Zero and navigating to the folder `/home/pi/timelapse`. Don't forget that your timelapse will still be taking pictures, as it loads when the Zero boots up.
-- Perhaps you could create a [gif out of your timelapse pictures](https://www.raspberrypi.org/learning/timelapse-setup/)?
-- Instead of lights, could you incorporate a sensor or a button into your project to instead take a photograph only when the sensor is triggered?
-- Could you design and 3D print a case for your wearable - perhaps something like [this one by Adafruit](https://www.raspberrypi.org/blog/wearable-pi-zero-camera/)?
+- You can see the pictures taken by your time-lapse wearable by attaching your monitor, keyboard and mouse to the Pi Zero and navigating to the folder `/home/pi/timelapse`. Don't forget that your time-lapse will still be taking pictures, as the program will load when the Pi Zero boots up.
+- You could create a [gif using your timelapse pictures](https://www.raspberrypi.org/learning/timelapse-setup/)?
+- Instead of lights, could you incorporate a sensor or a button into your project to take a photograph only when the sensor is triggered?
+- Could you design and 3D-print a case for your wearable? You could make something like [this one by Adafruit](https://www.raspberrypi.org/blog/wearable-pi-zero-camera/).
