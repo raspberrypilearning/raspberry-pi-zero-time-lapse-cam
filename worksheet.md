@@ -1,37 +1,37 @@
 # Raspberry Pi Zero Timelapse Camera
 
-In this resource you will make a wearable timelapse camera using a Raspberry Pi Zero.
+In this resource you will make a wearable time-lapse camera using a Raspberry Pi Zero.
 
 ## Deciding on your wearable
 
-First, you need to decide what kind of wearable you would like to make. The Zero is very small and portable so you can wear it in a variety of different ways. Here are two examples of wearable timelapse cameras you could make with a Raspberry Pi Zero:
+First, you need to decide what kind of wearable you would like to make. The Zero is very small and portable so you can wear it in various ways. Here are two examples of wearable time-lapse cameras that you could make with a Raspberry Pi Zero:
 
-1. You could use a lanyard to make a wearable camera that hangs around your neck. Your USB power pack could be stored in a shirt pocket near to the camera. Here is a basic wearable camera setup with a soldered on LED to alert you when a photograph is being taken, and a button which could be programmed to start/stop capture sequences.
+1. You could use a lanyard to make a wearable camera that hangs round your neck. Your USB power pack could be stored in a shirt pocket close to the camera. Here is a basic wearable camera setup with a soldered-on LED to alert you when a photograph is being taken, and a button which could be programmed to start and stop photo capture sequences.
 
   ![Lanyard timelapse cam](images/james-timelapse.png)
 
-1. You could attach your timelapse camera to a pair of sunglasses so that it can literally see what you see. This make uses an additional piece of hardware called a [Blinkt](https://shop.pimoroni.com/products/blinkt) which allows the addition of a cool light pattern whenever a picture is captured. Adding these lights is completely optional - you could skip this part altogether or you could add lights in a different way, for example by using individual LEDs.
+1. You could attach your time-lapse camera to a pair of sunglasses so that it can see what you see. This make uses an additional piece of hardware called a [Blinkt](https://shop.pimoroni.com/products/blinkt), which allows the addition of a cool light pattern whenever a picture is captured. Adding these lights is completely optional. You could skip this part altogether, or you could add lights in a different way, for example by using individual LEDs.
 
   ![Timelapse cam as glasses](images/timelapse-specs.png)
 
-1. Or, you may have your own idea for how you would like to wear your timelapse camera! The most important thing to remember is that your wearable timelapse camera will *not* be waterproof, so don't wear it outside in the rain (or in the shower).
+1. You may have your own idea about how you would like to wear your time-lapse camera! The most important thing to remember is that your wearable time-lapse camera will not be waterproof, so don't wear it outside in the rain (or in the shower).
 
 
 ## Attaching the camera
 
-The Zero has a smaller camera port than a standard Raspberry Pi, so you will need a special camera cable with one narrower end to attach the camera for your wearable make. You can see the difference between the two cables below:
+The Pi Zero has a smaller camera port than a standard Raspberry Pi, so you will need a special camera cable with one narrower end to attach the camera for your wearable make. You can see the difference between the two cables below:
 
   ![Camera cables](images/camera-cables.png)
 
-1. On the PiCamera, locate the clip where the camera cable is attached and pull it up to release the cable. The clip works just like the one you usually use to attach the camera to the Raspberry Pi.
+1. On the Camera Module, locate the clip where the camera cable is attached and pull it up to release the cable. The clip works just like the one you usually use to attach the camera to the Raspberry Pi.
 
   ![Camera without cable](images/camera-no-cable.png)
 
-1. Insert the wider end of the Zero camera cable between the clip and the camera, with the exposed metal connectors facing towards the front of the camera. Push down the clip to clamp the cable in place.
+1. Insert the wider end of the Pi Zero camera cable between the clip and the camera, with the exposed metal connectors facing towards the front of the camera. Push the clip down to clamp the cable in place.
 
   ![Camera attached to Pi Zero cable](images/camera-attached.png)
 
-1. Pull up the camera clip on the Zero and insert the narrower end of the camera cable, with the exposed metal connectors facing the underside of the Pi Zero. Push down the clip to secure the cable.
+1. Pull up the camera clip on the Pi Zero. Insert the narrower end of the camera cable with the exposed metal connectors facing the underside of the Pi Zero. Push the clip down to secure the cable.
 
   ![Pull up the clip](images/pull-up-clip.png)
 
@@ -43,11 +43,11 @@ The Zero has a smaller camera port than a standard Raspberry Pi, so you will nee
   raspistill -k
   ```
 
-1. You should see a camera preview (press Ctrl+C to exit). If you do not see a camera preview and instead receive an error message, check that your camera is properly connected to the Zero. Also ensure that your camera is enabled by opening the Raspberry Pi configuration menu under "Preferences":
+1. You should see a camera preview (press Ctrl+C to exit). If you do not see a camera preview and instead receive an error message, check that your camera is properly connected to the Pi Zero. Also ensure that your camera is enabled by opening the Raspberry Pi configuration menu under "Preferences":
 
   ![Raspberry Pi config menu](images/raspi-config-menu.png)
 
-  Check that the camera is set to "Enabled". If it is not, change the setting to "Enabled", press OK and then reboot your Zero before trying the `raspistill -k` command to check you can see a camera preview.
+  Check that the camera is set to "Enabled". If it is not, change the setting to "Enabled" and press OK. Reboot your Pi Zero before trying the `raspistill -k` command to check that you can see a camera preview.
 
   ![Set camera to enabled](images/raspi-config.png)
 
@@ -57,15 +57,15 @@ The Zero has a smaller camera port than a standard Raspberry Pi, so you will nee
 
   ![File Explorer](images/file-explorer.png)
 
-1. Select `Create new` and then click `Folder`
+1. Select `Create new` and then click `Folder`.
 
   ![Create folder menu](images/create-folder.png)
 
-1. Type in the name of the folder where you will store the code and the photographs. We chose to call ours `timelapse`. Make a note of the path to this folder which is displayed in the bar at the top, which should be `/home/pi/timelapse`
+1. Type in the name of the folder where you will store the code and the photographs. We chose to call ours `timelapse`. Make a note of the path to this folder which is displayed in the bar at the top, which should be `/home/pi/timelapse`.
 
   ![Timelapse folder](images/timelapse-folder.png)
 
-1. From the "Programming" menu, open up "Python 3"
+1. From the "Programming" menu, open up "Python 3".
 
   ![Open Python 3](images/python3-app-menu.png)
 
@@ -73,7 +73,7 @@ The Zero has a smaller camera port than a standard Raspberry Pi, so you will nee
 
 1. Click on `File` > `Save` and save your file into the `timelapse` folder you just created, with the filename `timelapse.py`.
 
-1. Add the following code to set up your PiCamera. We have deliberately set the resolution of the camera at 1024 x 768 so that the images are captured at a lower resolution. This is in case you wish to make an animated gif of your timelapse photographs later, so the file size of the gif will not be too large. If you would prefer higher or lower resolution photographs, you can change this setting accordingly.
+1. Add the following code to set up your Camera Module. We have deliberately set the resolution of the camera at 1024 x 768 so that the images are captured at a lower resolution. This is to allow you to make an animated gif of your time-lapse photographs. You will need to use low resolution images to make sure that the file size of the gif is not too large. If you would prefer higher or lower resolution photographs, you can change this setting.
 
   ```python
   from time import sleep
