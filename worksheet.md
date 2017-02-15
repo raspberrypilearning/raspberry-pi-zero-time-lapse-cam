@@ -43,11 +43,11 @@ The Pi Zero has a smaller camera port than a standard Raspberry Pi, so you will 
   raspistill -k
   ```
 
-1. You should see a camera preview (press Ctrl+C to exit). If you do not see a camera preview and instead receive an error message, check that your camera is properly connected to the Pi Zero. Also ensure that your camera is enabled by opening the Raspberry Pi configuration menu under "Preferences":
+1. You should see a camera preview (press Ctrl+C to exit). If you do not see a camera preview and instead receive an error message, check that your camera is properly connected to the Pi Zero. Also ensure that your camera is enabled by opening the Raspberry Pi configuration menu under `Preferences`:
 
   ![Raspberry Pi config menu](images/raspi-config-menu.png)
 
-  Check that the camera is set to "Enabled". If it is not, change the setting to "Enabled" and press OK. Reboot your Pi Zero before trying the `raspistill -k` command to check that you can see a camera preview.
+  Check that the camera is set to `Enabled`. If it is not, change the setting to `Enabled` and press OK. Reboot your Pi Zero before trying the `raspistill -k` command to check that you can see a camera preview.
 
   ![Set camera to enabled](images/raspi-config.png)
 
@@ -65,7 +65,7 @@ The Pi Zero has a smaller camera port than a standard Raspberry Pi, so you will 
 
   ![Timelapse folder](images/timelapse-folder.png)
 
-1. From the "Programming" menu, open up "Python 3".
+1. From the `Programming` menu, open up `Python 3`.
 
   ![Open Python 3](images/python3-app-menu.png)
 
@@ -135,7 +135,7 @@ sudo apt-get install python3-blinkt
 
 ## Coding the lights
 
-This part is optional - if you don't have a Blinkt or don't want to put lights on your timelapse camera, you can skip this section.
+This part is optional. If you don't have a Blinkt or don't want to put lights on your timelapse camera, you can skip this section.
 
 1. If you have not done so already, attach the Blinkt to your Pi Zero, ensuring that it is powered off first. The Blinkt must be attached with the curved edges matching the curved edges of the Pi Zero to avoid permanently damaging it.
 
