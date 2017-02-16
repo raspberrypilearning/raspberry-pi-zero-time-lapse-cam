@@ -8,11 +8,11 @@ First, you need to decide what kind of wearable you would like to make. The Pi Z
 
 1. You could use a lanyard to make a wearable camera that hangs round your neck. Your USB power pack could be stored in a shirt pocket close to the camera. Here is a basic wearable camera setup with a soldered-on LED to alert you when a photograph is being taken, and a button which could be programmed to start and stop photo capture sequences.
 
-  ![Lanyard timelapse cam](images/james-timelapse.png)
+  ![Lanyard time-lapse cam](images/james-timelapse.png)
 
 1. You could attach your time-lapse camera to a pair of sunglasses so that it can see what you see. This make uses an additional piece of hardware called a [Blinkt](https://shop.pimoroni.com/products/blinkt), which allows the addition of a cool light pattern whenever a picture is captured. Adding these lights is completely optional. You could skip this part altogether, or you could add lights in a different way, for example by using individual LEDs.
 
-  ![Timelapse cam as glasses](images/timelapse-specs.png)
+  ![Time-lapse cam as glasses](images/timelapse-specs.png)
 
 1. You may have your own idea about how you would like to wear your time-lapse camera! The most important thing to remember is that your wearable time-lapse camera will not be waterproof, so don't wear it outside in the rain (or in the shower).
 
@@ -61,9 +61,9 @@ The Pi Zero has a smaller camera port than a standard Raspberry Pi, so you will 
 
   ![Create folder menu](images/create-folder.png)
 
-1. Type in the name of the folder where you will store the code and the photographs. We chose to call ours `timelapse`. Make a note of the path to this folder which is displayed in the bar at the top, which should be `/home/pi/timelapse`.
+1. Type in the name of the folder where you will store the code and the photographs. We chose to call ours `time-lapse`. Make a note of the path to this folder which is displayed in the bar at the top, which should be `/home/pi/time-lapse`.
 
-  ![Timelapse folder](images/timelapse-folder.png)
+  ![Time-lapse folder](images/timelapse-folder.png)
 
 1. From the `Programming` menu, open up `Python 3`.
 
@@ -71,7 +71,7 @@ The Pi Zero has a smaller camera port than a standard Raspberry Pi, so you will 
 
 1. Create a new Python file by clicking on `File` > `New File`.
 
-1. Click on `File` > `Save` and save your file into the `timelapse` folder you just created, with the filename `timelapse.py`.
+1. Click on `File` > `Save` and save your file into the `time-lapse` folder you just created, with the filename `time-lapse.py`.
 
 1. Add the following code to set up your Camera Module. We have deliberately set the resolution of the camera at 1024 x 768 so that the images are captured at a lower resolution. This is to allow you to make an animated gif of your time-lapse photographs. You will need to use low resolution images to make sure that the file size of the gif is not too large. If you would prefer higher or lower resolution photographs, you can change this setting.
 
@@ -90,19 +90,19 @@ The Pi Zero has a smaller camera port than a standard Raspberry Pi, so you will 
 
     with picamera.PiCamera() as camera:
         camera.resolution = (1024, 768)
-        for filename in camera.capture_continuous('/home/pi/timelapse/img{timestamp:%H-%M-%S-%f}.jpg'):
+        for filename in camera.capture_continuous('/home/pi/time-lapse/img{timestamp:%H-%M-%S-%f}.jpg'):
             sleep(WAIT_TIME)
   ```
 
   Let's look at what these three lines do:
   - `WAIT_TIME = 30` - sets how long we would like to wait between shots, in seconds
   - `for filename in camera.capture_continuous(` - creates an "infinite iterator" or in other words, the code will keep taking photos forever until the program is stopped
-  - `'/home/pi/timelapse/img{timestamp:%H-%M-%S-%f}.jpg'` - the filename of the picture. Notice the interesting part - `{timestamp:%H-%M-%S-%f}` - this makes the file name of the picture contain the current time (including milliseconds), so that the pictures can be organised easily into a sequence, and so that it is extremely unlikely that two pictures would have the same file name.
+  - `'/home/pi/time-lapse/img{timestamp:%H-%M-%S-%f}.jpg'` - the filename of the picture. Notice the interesting part - `{timestamp:%H-%M-%S-%f}` - this makes the file name of the picture contain the current time (including milliseconds), so that the pictures can be organised easily into a sequence, and so that it is extremely unlikely that two pictures would have the same file name.
   - `sleep(WAIT_TIME)` - wait for the number of seconds you specified earlier
 
-1. Press F5 to run your program, and check that it continuously takes pictures every 30 seconds. You should be able to find the pictures in the folder `/home/pi/timelapse`.
+1. Press F5 to run your program, and check that it continuously takes pictures every 30 seconds. You should be able to find the pictures in the folder `/home/pi/time-lapse`.
 
-1. You can see the final code [here](code/final_timelapse.py)
+1. You can see the final code [here](code/final-time-lapse.py)
 
 ## Attaching a header to the Raspberry Pi Zero
 
@@ -135,7 +135,7 @@ sudo apt-get install python3-blinkt
 
 ## Coding the lights
 
-This part is optional. If you don't have a Blinkt or don't want to put lights on your timelapse camera, you can skip this section.
+This part is optional. If you don't have a Blinkt or don't want to put lights on your time-lapse camera, you can skip this section.
 
 1. If you have not done so already, attach the Blinkt to your Pi Zero, ensuring that it is powered off first. The Blinkt must be attached with the curved edges matching the curved edges of the Pi Zero to avoid permanently damaging it.
 
@@ -179,7 +179,7 @@ This part is optional. If you don't have a Blinkt or don't want to put lights on
 1. Add a line of code to call the function which shows the lights when a new picture is taken:
 
   ```python
-  for filename in camera.capture_continuous('/home/pi/timelapse/img{timestamp:%H-%M-%S-%f}.jpg'):
+  for filename in camera.capture_continuous('/home/pi/time-lapse/img{timestamp:%H-%M-%S-%f}.jpg'):
       lights()    # Add this line to call the light show
       time.sleep(WAIT_TIME)
   ```
@@ -201,12 +201,12 @@ We will be running the Pi Zero as a wearable with a USB power supply (and not wi
 1. A file will open up, add this line at the bottom of the file to automatically start your time-lapse file using Python 3:
 
   ```bash
-  sudo /usr/bin/python3 /home/pi/timelapse/timelapse.py
+  sudo /usr/bin/python3 /home/pi/time-lapse/time-lapse.py
   ```
 
 1. Press `Ctrl+X` to exit and `y` to save the changes.
 
-1. When you reboot your Raspberry Pi, the script should run. You can test this by rebooting and then looking inside the folder `/home/pi/timelapse` to see the photographs appearing. Note that when you reboot, Python will be running in the background. You will not see any window showing that your script is running.
+1. When you reboot your Raspberry Pi, the script should run. You can test this by rebooting and then looking inside the folder `/home/pi/time-lapse` to see the photographs appearing. Note that when you reboot, Python will be running in the background. You will not see any window showing that your script is running.
 
 ## Creating the wearable
 
@@ -232,7 +232,7 @@ Now that your code works, it's time to work out how you will make your Pi Zero w
 
 ## What's next?
 
-- You can see the pictures taken by your time-lapse wearable by attaching your monitor, keyboard and mouse to the Pi Zero and navigating to the folder `/home/pi/timelapse`. Don't forget that your time-lapse will still be taking pictures, as the program will load when the Pi Zero boots up.
-- You could create a [gif using your timelapse pictures](https://www.raspberrypi.org/learning/timelapse-setup/)?
+- You can see the pictures taken by your time-lapse wearable by attaching your monitor, keyboard and mouse to the Pi Zero and navigating to the folder `/home/pi/time-lapse`. Don't forget that your time-lapse will still be taking pictures, as the program will load when the Pi Zero boots up.
+- You could create a [gif using your time-lapse pictures](https://www.raspberrypi.org/learning/timelapse-setup/)?
 - Instead of lights, could you incorporate a sensor or a button into your project to take a photograph only when the sensor is triggered?
 - Could you design and 3D-print a case for your wearable? You could make something like [this one by Adafruit](https://www.raspberrypi.org/blog/wearable-pi-zero-camera/).
