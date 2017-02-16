@@ -12,4 +12,4 @@ Unless otherwise specified, everything in this repository is covered by the foll
 
 ***Raspberry Pi Zero Time-Lapse Camera*** by the [Raspberry Pi Foundation](http://www.raspberrypi.org) is licenced under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
 
-Based on a work at https://github.com/raspberrypilearning/pi-zero-timelapse-cam
+Based on a work at https://github.com/raspberrypilearning/raspberry-pi-zero-time-lapse-cam
