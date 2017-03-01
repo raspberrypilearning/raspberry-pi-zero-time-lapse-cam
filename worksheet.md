@@ -120,18 +120,7 @@ If you would like to include the optional lights on your wearable using the Blin
 
 ## Setting up the software
 
-If you are using the optional Blinkt, you will need to install the library code on your Pi Zero. To do this, you will need an internet connection.
-
-You can either:
-
-- Connect the Pi Zero to the internet using a USB-to-Ethernet dongle
-- If you have a Raspberry Pi with an internet connection, you could transfer your SD card into the Raspberry Pi to install the libraries, then transfer it back to the Pi Zero.
-
-Once you are connected to the internet, run the following command in the terminal:
-
-```bash
-sudo apt-get install python3-blinkt
-```
+If you are using the optional Blinkt, you will need to install the library code on your Raspberry Pi Zero. Follow the instructions on the [software page](software.md) to install the software needed to control the Blinkt.
 
 ## Coding the lights
 
@@ -233,6 +222,7 @@ Now that your code works, it's time to work out how you will make your Pi Zero w
 ## What's next?
 
 - You can see the pictures taken by your time-lapse wearable by attaching your monitor, keyboard and mouse to the Pi Zero and navigating to the folder `/home/pi/time-lapse`. Don't forget that your time-lapse will still be taking pictures, as the program will load when the Pi Zero boots up.
+- If you are using a Pi Zero W, you could [enable the VNC server](https://www.raspberrypi.org/learning/teachers-guide/remote/) to be able to view the photographs remotely from another computer.
 - You could create a [gif using your time-lapse pictures](https://www.raspberrypi.org/learning/timelapse-setup/)?
 - Instead of lights, could you incorporate a sensor or a button into your project to take a photograph only when the sensor is triggered?
 - Could you design and 3D-print a case for your wearable? You could make something like [this one by Adafruit](https://www.raspberrypi.org/blog/wearable-pi-zero-camera/).
