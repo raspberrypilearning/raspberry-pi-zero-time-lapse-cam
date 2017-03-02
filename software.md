@@ -2,7 +2,7 @@
 
 If you are using the optional Blinkt, you will need to install the library code on your Raspberry Pi Zero. This requires an internet connection.
 
-If you are using a Raspberry Pi Zero (rather than Zero W), you can either:
+If you are using a Raspberry Pi Zero without wireless connectivity, you can either:
 
 1. Connect the Raspberry Pi Zero to the internet using a USB dongle
 
