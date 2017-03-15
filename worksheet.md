@@ -92,7 +92,7 @@ The Pi Zero has a smaller camera port than a standard Raspberry Pi, so you will 
         camera.resolution = (1024, 768)
         for filename in camera.capture_continuous('/home/pi/time-lapse/img{timestamp:%H-%M-%S-%f}.jpg'):
             sleep(WAIT_TIME)
-  ```
+    ```
 
   Let's look at what these three lines do:
   - `WAIT_TIME = 30` - sets how long we would like to wait between shots, in seconds
