@@ -149,13 +149,13 @@ This part is optional. If you don't have a Blinkt or don't want to put lights on
 
   ```python
   def lights():
-    set_brightness(0.1)
-    clear()
-    set_pixel(0, 255, 0, 0)
-    show()
-    sleep(2)
-    set_pixel(0, 0, 0, 0)
-    show()
+      set_brightness(0.1)
+      clear()
+      set_pixel(0, 255, 0, 0)
+      show()
+      sleep(2)
+      set_pixel(0, 0, 0, 0)
+      show()
   ```
 
   This code does the following:
