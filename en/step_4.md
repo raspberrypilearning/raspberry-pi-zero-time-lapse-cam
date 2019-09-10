@@ -1,15 +1,22 @@
-## Deciding on your wearable
+## Checking your camera
 
-First, you need to decide what kind of wearable you would like to make. The Pi Zero is very small and portable so you can wear it in various ways. Here are two examples of wearable time-lapse cameras that you could make with a Raspberry Pi Zero:
+--- task ---
+Check that your camera is working by opening the terminal and typing the following command:
 
-- You could use a lanyard to make a wearable camera that hangs round your neck. Your USB power pack could be stored in a shirt pocket close to the camera. Here is a basic wearable camera setup with a soldered-on LED to alert you when a photograph is being taken, and a button which could be programmed to start and stop photo capture sequences.
+```bash
+raspistill -k
+```
+--- /task ---
 
-  ![Lanyard time-lapse cam](images/james-timelapse.png)
+--- task ---
+You should see a camera preview (press Ctrl+C to exit). If you do not see a camera preview and instead receive an error message, check that your camera is properly connected to the Pi Zero. Also ensure that your camera is enabled by opening the Raspberry Pi configuration menu under `Preferences`:
 
-- You could attach your time-lapse camera to a pair of sunglasses so that it can see what you see. This make uses an additional piece of hardware called a [Blinkt](https://shop.pimoroni.com/products/blinkt), which allows the addition of a cool light pattern whenever a picture is captured. Adding these lights is completely optional. You could skip this part altogether, or you could add lights in a different way, for example by using individual LEDs.
+![Raspberry Pi config menu](images/raspi-config-menu.png)
+--- /task ---
 
-  ![Time-lapse cam as glasses](images/timelapse-specs.png)
+--- task ---
+Check that the camera is set to `Enabled`. If it is not, change the setting to `Enabled` and press OK. Reboot your Pi Zero before trying the `raspistill -k` command to check that you can see a camera preview.
 
-- You may have your own idea about how you would like to wear your time-lapse camera! The most important thing to remember is that your wearable time-lapse camera will not be waterproof, so don't wear it outside in the rain (or in the shower).
-
+![Set camera to enabled](images/raspi-config.png)
+--- /task ---
 
