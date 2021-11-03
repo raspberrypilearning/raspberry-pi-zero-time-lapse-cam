@@ -1,4 +1,7 @@
 ## What you will make
+
+[[[camera-bullseye]]]
+
 In this resource you will make a wearable time-lapse camera using a Raspberry Pi Zero.
 
 ## What you will learn
