@@ -1,5 +1,7 @@
 ## What you will make
 
+[[[camera-bullseye]]]
+
 In this resource you will make a wearable time-lapse camera using a Raspberry Pi Zero.
 
 --- collapse ---
@@ -19,6 +21,7 @@ This resource covers elements from the following strands of the [Raspberry Pi Di
 - [Combine programming constructs to solve a problem](https://www.raspberrypi.org/curriculum/programming/builder)
 - [Combine inputs and/or outputs to create projects or solve a problem](https://www.raspberrypi.org/curriculum/physical-computing/builder)
 - [Can use and manipulate upcycled materials for use in prototypes](https://curriculum.raspberrypi.org/manufacture/creator/)
+
 --- /collapse ---
 
 --- collapse ---
@@ -48,6 +51,7 @@ Once you are connected to the internet, run the following command in the termina
 ```bash
 sudo apt-get install python3-blinkt
 ```
+
 More information can be found on the [Getting started with Blinkt](https://learn.pimoroni.com/tutorial/sandyj/getting-started-with-blinkt) page on the Pimoroni website.
 
 --- /collapse ---
