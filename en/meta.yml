@@ -18,14 +18,11 @@ version: 3
 last_tested: 2017-01-01
 steps: 
 - title: Introduction
-- title: What you will need
-- title: Raspberry Pi Zero Time-Lapse Camera
 - title: Deciding on your wearable
 - title: Attaching the camera
 - title: Checking your camera
 - title: Coding the time-lapse
 - title: Attaching a header to the Raspberry Pi Zero
-- title: Setting up the software
 - title: Coding the lights
 - title: Starting the time-lapse on boot
 - title: Creating the wearable

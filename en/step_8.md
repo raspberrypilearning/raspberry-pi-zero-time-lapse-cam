@@ -1,14 +1,32 @@
-## Attaching a header to the Raspberry Pi Zero
+## Starting the time-lapse on boot
 
-If you would like to include the optional lights on your wearable using the Blinkt, your Pi Zero will need a male header for the Blinkt to attach to, which must be soldered on. (If you don't want to solder, you could try the [hammer header](https://shop.pimoroni.com/products/gpio-hammer-header) instead.) *The Pi Zero must be completely unplugged and powered off before you attempt any soldering.*
+We will be running the Pi Zero as a wearable with a USB power supply (and not with a keyboard, mouse or monitor attached), so we need a way of starting the Python script when the Zero powers on.
 
-- If your header is longer than the number of pins needed, carefully break it off to the right length. Insert the header into the holes in the Pi Zero with the longer pins facing upwards.
+--- task ---
+Open up a terminal window
+--- /task ---
 
-  ![Pi zero front](images/pi-zero-front.png)
+--- task ---
+At the terminal, type the following command:
 
-- Keeping the header pressed in, turn both the Pi Zero and the header over. To make soldering easier, put a blob of blue tack under the Pi Zero on the long edge opposite the header to keep it level and stop it from moving around while you solder. Make sure the Pi Zero is flush with the header before beginning to solder.
+```bash
+sudo nano ~/.config/lxsession/LXDE-pi/autostart
+```
+--- /task ---
 
-- Using a soldering iron, carefully solder each of the pins on the header to the Zero, making sure there is enough solder to create a good connection for each one.
+--- task ---
+A file will open up, add this line at the bottom of the file to automatically start your time-lapse file using Python 3:
 
-  ![Pi zero back](images/pi-zero-back.png)
+```bash
+sudo /usr/bin/python3 /home/pi/time-lapse/time-lapse.py
+```
+--- /task ---
+
+--- task ---
+Press `Ctrl+X` to exit and `y` to save the changes.
+--- /task ---
+
+--- task ---
+When you reboot your Raspberry Pi, the script should run. You can test this by rebooting and then looking inside the folder `/home/pi/time-lapse` to see the photographs appearing. Note that when you reboot, Python will be running in the background. You will not see any window showing that your script is running.
+--- /task ---
 

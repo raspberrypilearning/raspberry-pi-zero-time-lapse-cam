@@ -1,53 +1,67 @@
-## Coding the time-lapse
+## Coding the lights
 
-- Once the camera is set up, we need to write some code to take regular pictures. Open the file explorer, then right click on a blank space inside the file explorer window.
+This part is optional. If you don't have a Blinkt or don't want to put lights on your time-lapse camera, you can skip this section.
 
-  ![File Explorer](images/file-explorer.png)
+--- task ---
+If you have not done so already, attach the Blinkt to your Pi Zero, ensuring that it is powered off first. The Blinkt must be attached with the curved edges matching the curved edges of the Pi Zero to avoid permanently damaging it.
 
-- Select `Create new` and then click `Folder`.
+![Attach the Blinkt](images/attach-blinkt.png)
+--- /task ---
 
-  ![Create folder menu](images/create-folder.png)
+--- task ---
+Once the Blinkt is attached and the Pi Zero is switched on, you can add some code to your program to control the lights.
+--- /task ---
 
-- Type in the name of the folder where you will store the code and the photographs. We chose to call ours `time-lapse`. Make a note of the path to this folder which is displayed in the bar at the top, which should be `/home/pi/time-lapse`.
+--- task ---
+Add a new line of code with the other `import` statements to import the functions we need from the blinkt library:
 
-  ![Time-lapse folder](images/timelapse-folder.png)
+```python
+from blinkt import set_pixel, set_brightness, show, clear
+```
+--- /task ---
 
-- From the `Programming` menu, open up `Python 3`.
+--- task ---
+Immediately after this line, create a function:
 
-  ![Open Python 3](images/python3-app-menu.png)
+```python
+def lights():
+	# Code will go here
+```
+--- /task ---
 
-- Create a new Python file by clicking on `File` > `New File`.
+--- task ---
+Inside this function you can put the code for your own light show. Here's a very simple example:
 
-- Click on `File` > `Save` and save your file into the `time-lapse` folder you just created, with the filename `time-lapse.py`.
+```python
+def lights():
+	set_brightness(0.1)
+	clear()
+	set_pixel(0, 255, 0, 0)
+	show()
+	sleep(2)
+	set_pixel(0, 0, 0, 0)
+	show()
+```
+--- /task ---
 
-- Add the following code to set up your Camera Module. We have deliberately set the resolution of the camera at 1024 x 768 so that the images are captured at a lower resolution. This is to allow you to make an animated gif of your time-lapse photographs. You will need to use low resolution images to make sure that the file size of the gif is not too large. If you would prefer higher or lower resolution photographs, you can change this setting.
+This code does the following:
+- `set_brightness(0.1)` - the lights are pretty bright, so we turned them down a bit
+- `clear()` - clears any lights which may be on
+- `set_pixel(0, 255, 0, 0)` - sets pixel 0 (the pixels are numbered 0-7 starting on the left) to red. The first number is which pixel to set, and the last three numbers are a colour in RGB format.
+- `show()` - shows the pixels in the colours you just set.
+- `sleep(2)` - wait 2 seconds
 
-  ```python
-  from time import sleep
-  import picamera
+--- task ---
+Add a line of code to call the function which shows the lights when a new picture is taken:
 
-  with picamera.PiCamera() as camera:
-      camera.resolution = (1024, 768)
-  ```
+```python
+for filename in camera.capture_continuous('/home/pi/time-lapse/img{timestamp:%H-%M-%S-%f}.jpg'):
+	lights()    # Add this line to call the light show
+	time.sleep(WAIT_TIME)
+```
+--- /task ---
 
-- We need the camera to continuously capture photographs at a set time interval. To do this, we will use the `capture_continuous` method from the picamera library. Add three lines to your code so that it looks as follows:
-
-    ```python
-    WAIT_TIME = 30
-
-    with picamera.PiCamera() as camera:
-        camera.resolution = (1024, 768)
-        for filename in camera.capture_continuous('/home/pi/time-lapse/img{timestamp:%H-%M-%S-%f}.jpg'):
-            sleep(WAIT_TIME)
-    ```
-
-  Let's look at what these three lines do:
-  - `WAIT_TIME = 30` - sets how long we would like to wait between shots, in seconds
-  - `for filename in camera.capture_continuous(` - creates an "infinite iterator" or in other words, the code will keep taking photos forever until the program is stopped
-  - `'/home/pi/time-lapse/img{timestamp:%H-%M-%S-%f}.jpg'` - the filename of the picture. Notice the interesting part - `{timestamp:%H-%M-%S-%f}` - this makes the file name of the picture contain the current time (including milliseconds), so that the pictures can be organised easily into a sequence, and so that it is extremely unlikely that two pictures would have the same file name.
-  - `sleep(WAIT_TIME)` - wait for the number of seconds you specified earlier
-
-- Press F5 to run your program, and check that it continuously takes pictures every 30 seconds. You should be able to find the pictures in the folder `/home/pi/time-lapse`.
-
-- You can see the final code [here](resources/final-time-lapse.py)
+--- task ---
+Add your own code for a light show. When writing the code for your light sequence, make sure that you do not include an infinite loop (`while True:`) within the function. If you do this, the flow of control within your program will get stuck within this loop and your camera will not take any more pictures. In the glasses example, we used [this code](resources/example_lights.py) to cause a red light to move across the screen and back twice.
+--- /task ---
 

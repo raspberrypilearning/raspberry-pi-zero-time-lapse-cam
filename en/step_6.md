@@ -1,16 +1,20 @@
-## Checking your camera
+## Attaching a header to the Raspberry Pi Zero
 
-- Check that your camera is working by opening the terminal and typing the following command:
+If you would like to include the optional lights on your wearable using the Blinkt, your Pi Zero will need a male header for the Blinkt to attach to, which must be soldered on. (If you don't want to solder, you could try the [hammer header](https://shop.pimoroni.com/products/gpio-hammer-header) instead.) *The Pi Zero must be completely unplugged and powered off before you attempt any soldering.*
 
-  ```bash
-  raspistill -k
-  ```
+--- task ---
+If your header is longer than the number of pins needed, carefully break it off to the right length. Insert the header into the holes in the Pi Zero with the longer pins facing upwards.
 
-- You should see a camera preview (press Ctrl+C to exit). If you do not see a camera preview and instead receive an error message, check that your camera is properly connected to the Pi Zero. Also ensure that your camera is enabled by opening the Raspberry Pi configuration menu under `Preferences`:
+![Pi zero front](images/pi-zero-front.png)
+--- /task ---
 
-  ![Raspberry Pi config menu](images/raspi-config-menu.png)
+--- task ---
+Keeping the header pressed in, turn both the Pi Zero and the header over. To make soldering easier, put a blob of blue tack under the Pi Zero on the long edge opposite the header to keep it level and stop it from moving around while you solder. Make sure the Pi Zero is flush with the header before beginning to solder.
+--- /task ---
 
-  Check that the camera is set to `Enabled`. If it is not, change the setting to `Enabled` and press OK. Reboot your Pi Zero before trying the `raspistill -k` command to check that you can see a camera preview.
+--- task ---
+Using a soldering iron, carefully solder each of the pins on the header to the Zero, making sure there is enough solder to create a good connection for each one.
 
-  ![Set camera to enabled](images/raspi-config.png)
+![Pi zero back](images/pi-zero-back.png)
+--- /task ---
 
