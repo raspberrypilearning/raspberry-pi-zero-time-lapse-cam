@@ -1,7 +1,8 @@
 ---
 title: Raspberry Pi Zero Time-Lapse Camera
 hero_image: images/banner.png
-description: In this resource you will make a wearable time-lapse camera using a Raspberry Pi Zero.
+description: In this resource you will make a wearable time-lapse camera using a Raspberry
+  Pi Zero.
 original_url: https://raspberrypi.org/learning/raspberry-pi-zero-time-lapse-cam
 theme: turquoise
 duration: 2
@@ -16,8 +17,9 @@ hardware: electronic-components
 software: python
 version: 3
 last_tested: 2017-01-01
-steps: 
+steps:
 - title: Introduction
+  completion: engaged
 - title: Deciding on your wearable
 - title: Attaching the camera
 - title: Checking your camera
@@ -25,5 +27,6 @@ steps:
 - title: Attaching a header to the Raspberry Pi Zero
 - title: Coding the lights
 - title: Starting the time-lapse on boot
+  completion: internal
 - title: Creating the wearable
 - title: What's next?
