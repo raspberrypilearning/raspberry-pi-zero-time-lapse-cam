@@ -27,6 +27,6 @@ Press `Ctrl+X` to exit and `y` to save the changes.
 --- /task ---
 
 --- task ---
-When you reboot your Raspberry Pi, the script should run. You can test this by rebooting and then looking inside the folder `/home/pi/time-lapse` to see the photographs appearing. Note that when you reboot, Python will be running in the background. You will not see any window showing that your script is running.
+When you reboot your Raspberry Pi, the script should run. You can test this by rebooting and then looking inside the folder `/home/username/time-lapse` to see the photographs appearing. Note that when you reboot, Python will be running in the background. You will not see any window showing that your script is running.
 --- /task ---
 
