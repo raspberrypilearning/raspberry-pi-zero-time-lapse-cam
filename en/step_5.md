@@ -13,7 +13,7 @@ Select `Create new` and then click `Folder`.
 --- /task ---
 
 --- task ---
-Type in the name of the folder where you will store the code and the photographs. We chose to call ours `time-lapse`. Make a note of the path to this folder which is displayed in the bar at the top, which should be `/home/pi/time-lapse`.
+Type in the name of the folder where you will store the code and the photographs. We chose to call ours `time-lapse`. Make a note of the path to this folder which is displayed in the bar at the top, which should be `/home/username/time-lapse`. Replace `username` with the username you have used for your Raspberry Pi.
 
 ![Time-lapse folder](images/timelapse-folder.png)
 --- /task ---
@@ -48,7 +48,7 @@ WAIT_TIME = 30
 
 with picamera.PiCamera() as camera:
 	camera.resolution = (1024, 768)
-	for filename in camera.capture_continuous('/home/pi/time-lapse/img{timestamp:%H-%M-%S-%f}.jpg'):
+	for filename in camera.capture_continuous('/home/username/time-lapse/img{timestamp:%H-%M-%S-%f}.jpg'):
 	sleep(WAIT_TIME)
 ```
 --- /task ---
@@ -56,11 +56,11 @@ with picamera.PiCamera() as camera:
 Let's look at what these three lines do:
   - `WAIT_TIME = 30` - sets how long we would like to wait between shots, in seconds
   - `for filename in camera.capture_continuous(` - creates an "infinite iterator" or in other words, the code will keep taking photos forever until the program is stopped
-  - `'/home/pi/time-lapse/img{timestamp:%H-%M-%S-%f}.jpg'` - the filename of the picture. Notice the interesting part - `{timestamp:%H-%M-%S-%f}` - this makes the file name of the picture contain the current time (including milliseconds), so that the pictures can be organised easily into a sequence, and so that it is extremely unlikely that two pictures would have the same file name.
+  - `'/home/username/time-lapse/img{timestamp:%H-%M-%S-%f}.jpg'` - the filename of the picture. Notice the interesting part - `{timestamp:%H-%M-%S-%f}` - this makes the file name of the picture contain the current time (including milliseconds), so that the pictures can be organised easily into a sequence, and so that it is extremely unlikely that two pictures would have the same file name.
   - `sleep(WAIT_TIME)` - wait for the number of seconds you specified earlier
 
 --- task ---
-Press F5 to run your program, and check that it continuously takes pictures every 30 seconds. You should be able to find the pictures in the folder `/home/pi/time-lapse`.
+Press F5 to run your program, and check that it continuously takes pictures every 30 seconds. You should be able to find the pictures in the folder `/home/username/time-lapse`.
 --- /task ---
 
 --- collapse ---
