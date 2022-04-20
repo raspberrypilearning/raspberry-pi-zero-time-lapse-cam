@@ -55,7 +55,7 @@ This code does the following:
 Add a line of code to call the function which shows the lights when a new picture is taken:
 
 ```python
-for filename in camera.capture_continuous('/home/pi/time-lapse/img{timestamp:%H-%M-%S-%f}.jpg'):
+for filename in camera.capture_continuous('/home/username/time-lapse/img{timestamp:%H-%M-%S-%f}.jpg'):
 	lights()    # Add this line to call the light show
 	time.sleep(WAIT_TIME)
 ```

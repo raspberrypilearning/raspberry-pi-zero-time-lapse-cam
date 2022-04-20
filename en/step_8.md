@@ -18,7 +18,7 @@ sudo nano ~/.config/lxsession/LXDE-pi/autostart
 A file will open up, add this line at the bottom of the file to automatically start your time-lapse file using Python 3:
 
 ```bash
-sudo /usr/bin/python3 /home/pi/time-lapse/time-lapse.py
+sudo /usr/bin/python3 /home/username/time-lapse/time-lapse.py
 ```
 --- /task ---
 
@@ -27,6 +27,6 @@ Press `Ctrl+X` to exit and `y` to save the changes.
 --- /task ---
 
 --- task ---
-When you reboot your Raspberry Pi, the script should run. You can test this by rebooting and then looking inside the folder `/home/pi/time-lapse` to see the photographs appearing. Note that when you reboot, Python will be running in the background. You will not see any window showing that your script is running.
+When you reboot your Raspberry Pi, the script should run. You can test this by rebooting and then looking inside the folder `/home/username/time-lapse` to see the photographs appearing. Note that when you reboot, Python will be running in the background. You will not see any window showing that your script is running.
 --- /task ---
 
