@@ -18,7 +18,7 @@ sudo nano ~/.config/lxsession/LXDE-pi/autostart
 A file will open up, add this line at the bottom of the file to automatically start your time-lapse file using Python 3:
 
 ```bash
-sudo /usr/bin/python3 /home/pi/time-lapse/time-lapse.py
+sudo /usr/bin/python3 /home/username/time-lapse/time-lapse.py
 ```
 --- /task ---
 
