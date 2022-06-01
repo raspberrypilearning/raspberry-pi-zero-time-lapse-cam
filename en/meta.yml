@@ -19,14 +19,16 @@ version: 3
 last_tested: 2017-01-01
 steps:
 - title: Introduction
-  completion: engaged
 - title: Deciding on your wearable
 - title: Attaching the camera
+  completion:
+  - engaged
 - title: Checking your camera
 - title: Coding the time-lapse
 - title: Attaching a header to the Raspberry Pi Zero
 - title: Coding the lights
 - title: Starting the time-lapse on boot
-  completion: internal
 - title: Creating the wearable
+  completion:
+  - internal
 - title: What's next?
