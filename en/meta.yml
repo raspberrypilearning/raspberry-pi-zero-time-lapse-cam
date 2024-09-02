@@ -6,7 +6,7 @@ description: In this resource you will make a wearable time-lapse camera using a
 original_url: https://raspberrypi.org/learning/raspberry-pi-zero-time-lapse-cam
 theme: turquoise
 duration: 2
-listed: true
+listed: false
 ingredient: false
 copyedit: true
 curriculum: 2, design-1, programming-2, phys-comp-2, manufacture-1, community-0
